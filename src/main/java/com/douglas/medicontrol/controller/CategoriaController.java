@@ -34,4 +34,11 @@ public class CategoriaController {
        CategoriaResponseDTO response = new CategoriaResponseDTO(salva.getId(),salva.getNome());
        return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
+
+    // ativa o tratamento de erro
+    @GetMapping("/{id}")
+    public ResponseEntity<CategoriaResponseDTO> buscarPorId(@PathVariable Long id) {
+        Categoria obj = service.buscarPorIdCategoria(id);
+        return ResponseEntity.ok().body(new CategoriaResponseDTO(obj.getId(), obj.getNome()));
+    }
 }

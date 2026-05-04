@@ -4,6 +4,7 @@ package com.douglas.medicontrol.service;
 import com.douglas.medicontrol.dto.CategoriaRequestDTO;
 import com.douglas.medicontrol.model.Categoria;
 import com.douglas.medicontrol.repository.CategoriaRepository;
+import com.douglas.medicontrol.services.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,8 +24,11 @@ public class CategoriaService {
         return repository.findAll();
     }
 
-    public Optional<Categoria> buscarPorIdCategoria(Long id){
-        return repository.findById(id);
+    public Categoria buscarPorIdCategoria(Long id){
+        Optional<Categoria> obj = repository.findById(id);
+        //Se o objeto nao existir ,dispara a exceção!
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
+
     }
 
     @Transactional

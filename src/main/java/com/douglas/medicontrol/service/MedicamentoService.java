@@ -40,11 +40,10 @@ public class MedicamentoService {
         if(nomeJaExiste){
             throw new RuntimeException("Erro: Já existe um medicamento cadastrado com o nome:" + dto.nome());
         }
-        Categoria categoria = categoriaService.buscarPorIdCategoria(dto.categoriaId())
-                .orElseThrow(() -> new RuntimeException("Categoria não encontrada!"));
+        Categoria categoria = categoriaService.buscarPorIdCategoria(dto.categoriaId());
 
-        Fabricante fabricante = fabricanteService.buscarPorIdFabricante(dto.fabricanteId())
-                .orElseThrow(() -> new RuntimeException("Fabricante não encontrado!"));
+        Fabricante fabricante = fabricanteService.buscarPorIdFabricante(dto.fabricanteId());
+
 
         Medicamento medicamento = new Medicamento();
         medicamento.setNome(dto.nome());
