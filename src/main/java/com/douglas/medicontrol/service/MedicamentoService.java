@@ -6,6 +6,7 @@ import com.douglas.medicontrol.model.Categoria;
 import com.douglas.medicontrol.model.Fabricante;
 import com.douglas.medicontrol.model.Medicamento;
 import com.douglas.medicontrol.repository.MedicamentoRepository;
+import com.douglas.medicontrol.services.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,25 +20,25 @@ public class MedicamentoService {
     private final CategoriaService categoriaService;
     private final FabricanteService fabricanteService;
 
-    public MedicamentoService(MedicamentoRepository repository, CategoriaService categoriaService, FabricanteService fabricanteService){
+    public MedicamentoService(MedicamentoRepository repository, CategoriaService categoriaService, FabricanteService fabricanteService) {
         this.repository = repository;
         this.categoriaService = categoriaService;
         this.fabricanteService = fabricanteService;
     }
 
-    public List<Medicamento> listarTodos(){
+    public List<Medicamento> listarTodos() {
         return repository.findAll();
     }
 
-    public Optional<Medicamento> buscarPorId(Long id){
+    public Optional<Medicamento> buscarPorId(Long id) {
         return repository.findById(id);
     }
 
     @Transactional
-    public Medicamento salvar(MedicamentoRequestDTO dto){
+    public Medicamento salvar(MedicamentoRequestDTO dto) {
         boolean nomeJaExiste = repository.findAll().stream().anyMatch(m -> m.getNome().equalsIgnoreCase(dto.nome()));
 
-        if(nomeJaExiste){
+        if (nomeJaExiste) {
             throw new RuntimeException("Erro: Já existe um medicamento cadastrado com o nome:" + dto.nome());
         }
         Categoria categoria = categoriaService.buscarPorIdCategoria(dto.categoriaId());
@@ -49,7 +50,7 @@ public class MedicamentoService {
         medicamento.setNome(dto.nome());
         medicamento.setDosagem(dto.dosagem());
         medicamento.setPreco(dto.preco());
-        medicamento.setQuantidade(dto.quantidade());
+        medicamento.setEstoque(dto.estoque());
         medicamento.setDataValidade(dto.dataValidade());
 
         medicamento.setCategoria(categoria);
@@ -58,8 +59,14 @@ public class MedicamentoService {
         return repository.save(medicamento);
 
     }
+
     @Transactional
-    public void deletar(Long id){
+    public void deletar(Long id) {
         repository.deleteById(id);
+    }
+
+    public Medicamento buscarPorIdMedicamento(Long id) {
+        Optional<Medicamento> obj = repository.findById(id);
+        return obj.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 }

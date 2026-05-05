@@ -38,7 +38,14 @@ public class FabricanteController {
         FabricanteResponseDTO response = new FabricanteResponseDTO(salvo.getId(), salvo.getNome(), salvo.getCnpj());
 
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
-
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<FabricanteResponseDTO> buscarPorId(@PathVariable Long id){
+        Fabricante obj = service.buscarPorIdFabricante(id);
+        return ResponseEntity.ok().body(new FabricanteResponseDTO(obj.getId(), obj.getNome(), obj.getCnpj()));
+    }
+
+
 }
 

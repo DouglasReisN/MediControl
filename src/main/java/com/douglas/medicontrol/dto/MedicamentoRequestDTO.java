@@ -7,7 +7,7 @@ public record MedicamentoRequestDTO(
 
     String nome,
     String dosagem,
-    Integer quantidade,
+    Integer estoque,
     BigDecimal preco,
     LocalDate dataValidade,
     Long categoriaId,

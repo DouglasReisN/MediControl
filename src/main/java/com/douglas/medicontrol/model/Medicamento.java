@@ -14,6 +14,17 @@ public class Medicamento {
 
     public Medicamento(){}
 
+    public Medicamento(Long id, String nome, String dosagem, BigDecimal preco, LocalDate dataValidade, Integer estoque, Categoria categoria, Fabricante fabricante) {
+        this.id = id;
+        this.nome = nome;
+        this.dosagem = dosagem;
+        this.preco = preco;
+        this.dataValidade = dataValidade;
+        this.estoque = estoque;
+        this.categoria = categoria;
+        this.fabricante = fabricante;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -29,7 +40,7 @@ public class Medicamento {
     @Column(name = "data_validade")
     private LocalDate dataValidade;
 
-    private Integer quantidade;
+    private Integer estoque;
 
     @ManyToOne
     @JoinColumn(name = "categoria_id")
@@ -78,12 +89,12 @@ public class Medicamento {
         this.dataValidade = dataValidade;
     }
 
-    public Integer getQuantidade() {
-        return quantidade;
+    public Integer getEstoque() {
+        return estoque;
     }
 
-    public void setQuantidade(Integer quantidade) {
-        this.quantidade = quantidade;
+    public void setEstoque(Integer quantidade) {
+        this.estoque = quantidade;
     }
 
     public Categoria getCategoria() {
