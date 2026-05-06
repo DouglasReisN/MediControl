@@ -1,4 +1,4 @@
-package com.douglas.medicontrol.web.exceptions;
+package com.douglas.medicontrol.exceptions;
 
 
 import java.io.Serializable;

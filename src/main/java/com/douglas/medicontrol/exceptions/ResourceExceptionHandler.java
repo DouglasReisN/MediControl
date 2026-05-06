@@ -1,7 +1,6 @@
-package com.douglas.medicontrol.web.exceptions;
+package com.douglas.medicontrol.exceptions;
 
 
-import com.douglas.medicontrol.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

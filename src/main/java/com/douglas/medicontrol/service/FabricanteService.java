@@ -4,7 +4,7 @@ package com.douglas.medicontrol.service;
 import com.douglas.medicontrol.dto.FabricanteRequestDTO;
 import com.douglas.medicontrol.model.Fabricante;
 import com.douglas.medicontrol.repository.FabricanteRepository;
-import com.douglas.medicontrol.services.exceptions.ResourceNotFoundException;
+import com.douglas.medicontrol.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

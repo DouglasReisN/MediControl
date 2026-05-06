@@ -6,7 +6,7 @@ import com.douglas.medicontrol.model.Categoria;
 import com.douglas.medicontrol.model.Fabricante;
 import com.douglas.medicontrol.model.Medicamento;
 import com.douglas.medicontrol.repository.MedicamentoRepository;
-import com.douglas.medicontrol.services.exceptions.ResourceNotFoundException;
+import com.douglas.medicontrol.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

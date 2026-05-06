@@ -4,7 +4,7 @@ package com.douglas.medicontrol.service;
 import com.douglas.medicontrol.dto.CategoriaRequestDTO;
 import com.douglas.medicontrol.model.Categoria;
 import com.douglas.medicontrol.repository.CategoriaRepository;
-import com.douglas.medicontrol.services.exceptions.ResourceNotFoundException;
+import com.douglas.medicontrol.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

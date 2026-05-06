@@ -1,4 +1,4 @@
-package com.douglas.medicontrol.services.exceptions;
+package com.douglas.medicontrol.exceptions;
 
 
 
