@@ -12,7 +12,8 @@ import java.time.Instant;
 @ControllerAdvice//Evita o uso do try/cacth ,e monitora todos os controllers do sistema
 public class ResourceExceptionHandler {
 
-    @ExceptionHandler(ResourceNotFoundException.class)//Se qualquer lugar do código lançar uma ResourceNotFoundException, o Spring automaticamente desvia a rota e cai dentro desse metodo.
+    @ExceptionHandler(ResourceNotFoundException.class)
+//Se qualquer lugar do código lançar uma ResourceNotFoundException, o Spring automaticamente desvia a rota e cai dentro desse metodo.
     public ResponseEntity<StandardError> resourceNotFound(ResourceNotFoundException e, HttpServletRequest request) {
 
         String error = "Recurso não encontrado";
@@ -29,5 +30,5 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(status).body(err);
 
     }
-
 }
+
